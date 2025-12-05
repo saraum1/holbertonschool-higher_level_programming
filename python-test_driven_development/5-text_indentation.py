@@ -1,25 +1,15 @@
 #!/usr/bin/python3
-'''prints a text with 2 new lines after each
-of these characters: ., ? and :'''
-
-
+"""Text indentation module."""
 def text_indentation(text):
-    '''prints a text with 2 new lines after each
-    of these characters: ., ? and :'''
-    if not isinstance(text, str):
+    """Print text with formatting."""
+    if type(text) is not str:
         raise TypeError("text must be a string")
-
-    text = text.strip()
-
-    i = 0
-    while i < len(text):
-        char = text[i]
-        print(char, end="")
-        if char in ['.', '?', ':']:
+    buffer = ""
+    for c in text:
+        buffer += c
+        if c in ".?:":
+            print(buffer.strip())
             print()
-            print()
-            i += 1
-            while i < len(text) and text[i] == ' ':
-                i += 1
-            i -= 1
-        i += 1
+            buffer = ""
+    if buffer.strip():
+        print(buffer.strip())
