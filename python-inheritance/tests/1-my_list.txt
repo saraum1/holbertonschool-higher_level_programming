@@ -1,0 +1,12 @@
+The print_sorted method prints a sorted list without changing the original.
+
+>>> MyList = __import__('1-my_list').MyList
+>>> m = MyList()
+>>> for n in [1, 4, 2, 3, 5]:
+...     m.append(n)
+>>> m
+[1, 4, 2, 3, 5]
+>>> m.print_sorted()
+[1, 2, 3, 4, 5]
+>>> m
+[1, 4, 2, 3, 5]
