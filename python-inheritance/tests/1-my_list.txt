@@ -1,6 +1,8 @@
-The print_sorted method prints a sorted list without changing the original.
+Tests for MyList.print_sorted()
 
 >>> MyList = __import__('1-my_list').MyList
+
+# normal case
 >>> m = MyList()
 >>> for n in [1, 4, 2, 3, 5]:
 ...     m.append(n)
@@ -10,3 +12,17 @@ The print_sorted method prints a sorted list without changing the original.
 [1, 2, 3, 4, 5]
 >>> m
 [1, 4, 2, 3, 5]
+
+# empty list
+>>> empty = MyList()
+>>> empty.print_sorted()
+[]
+
+# list with negative numbers
+>>> neg = MyList()
+>>> for n in [3, -1, -5, 2, 0]:
+...     neg.append(n)
+>>> neg.print_sorted()
+[-5, -1, 0, 2, 3]
+>>> neg
+[3, -1, -5, 2, 0]
