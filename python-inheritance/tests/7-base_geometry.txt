@@ -1,16 +1,54 @@
-Doctest for BaseGeometry
+Tests for BaseGeometry
 
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
+Test present: area()
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+
 Test present: integer_validator()
->>> bg.integer_validator("age", 1)
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
 
 Test present: integer_validator("age")
->>> bg.integer_validator("age", 2)
+>>> bg.integer_validator("age", 1)
 
 Test present: integer_validator("age", "4")
 >>> bg.integer_validator("age", "4")
 Traceback (most recent call last):
 TypeError: age must be an integer
 
+Test present: integer_validator("age", (4,))
+>>> bg.integer_validator("age", (4,))
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+Test present: integer_validator("age", [3])
+>>> bg.integer_validator("age", [3])
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+Test present: integer_validator("age", True)
+>>> bg.integer_validator("age", True)
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+Test present: integer_validator("age", {3, 4})
+>>> bg.integer_validator("age", {3, 4})
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+Test present: integer_validator("age", None)
+>>> bg.integer_validator("age", None)
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("age", -4)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
