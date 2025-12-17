@@ -1,24 +1,42 @@
 Test present: integer_validator()
-Test present: integer_validator(“age”)
-
-Doctest for BaseGeometry
+Test present: integer_validator("age")
 
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
+>>> isinstance(bg, BaseGeometry)
+True
+
+>>> bg.integer_validator("width", 2)
 
 >>> bg.area()
 Traceback (most recent call last):
 Exception: area() is not implemented
 
->>> bg.integer_validator("my_int", 12)
->>> bg.integer_validator("width", 89)
->>> bg.integer_validator("age", 1)
+>>> bg.integer_validator("width", 0)
+Traceback (most recent call last):
+ValueError: width must be greater than 0
+
+>>> bg.integer_validator("width", -5)
+Traceback (most recent call last):
+ValueError: width must be greater than 0
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator("width", "a")
+Traceback (most recent call last):
+TypeError: width must be an integer
 
 >>> bg.integer_validator("age", "4")
 Traceback (most recent call last):
 TypeError: age must be an integer
 
->>> bg.integer_validator("age", (4,))
+>>> bg.integer_validator("age", (7,))
 Traceback (most recent call last):
 TypeError: age must be an integer
 
@@ -26,7 +44,7 @@ TypeError: age must be an integer
 Traceback (most recent call last):
 TypeError: age must be an integer
 
->>> bg.integer_validator("age", True)
+>>> bg.integer_validator("age", False)
 Traceback (most recent call last):
 TypeError: age must be an integer
 
@@ -38,10 +56,6 @@ TypeError: age must be an integer
 Traceback (most recent call last):
 TypeError: age must be an integer
 
->>> bg.integer_validator("age", 0)
+>>> bg.integer_validator("age", 5.54)
 Traceback (most recent call last):
-ValueError: age must be greater than 0
-
->>> bg.integer_validator("age", -4)
-Traceback (most recent call last):
-ValueError: age must be greater than 0
+TypeError: age must be an integer
