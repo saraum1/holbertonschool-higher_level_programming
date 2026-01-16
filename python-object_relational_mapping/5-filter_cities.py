@@ -20,7 +20,7 @@ def main():
         "SELECT cities.name "
         "FROM cities "
         "JOIN states ON cities.state_id = states.id "
-        "WHERE states.name = %s "
+        "WHERE BINARY states.name = %s "
         "ORDER BY cities.id ASC",
         (sys.argv[4],)
     )
