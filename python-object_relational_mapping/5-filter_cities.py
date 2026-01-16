@@ -1,4 +1,4 @@
-##!/usr/bin/python3
+#!/usr/bin/python3
 """Lists cities of a given state using MySQLdb."""
 
 import sys
@@ -25,7 +25,10 @@ def main():
         (sys.argv[4],)
     )
     rows = cur.fetchall()
-    print(", ".join(row[0] for row in rows))
+
+    if rows:
+        print(", ".join(row[0] for row in rows))
+
     cur.close()
     db.close()
 
