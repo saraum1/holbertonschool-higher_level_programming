@@ -17,7 +17,7 @@ def main():
     )
     cur = db.cursor()
 
-    # Case-sensitive exact match using BINARY
+  
     query = (
         "SELECT * FROM states "
         "WHERE BINARY name = '{}' "
