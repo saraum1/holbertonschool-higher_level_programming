@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """Lists all cities of a given state (safe) using MySQLdb with one execute()."""
 
-#!/usr/bin/python3
-"""Task 5 fix: Lists all cities of a given state (SQL injection free)."""
-
 import sys
 import MySQLdb
 
