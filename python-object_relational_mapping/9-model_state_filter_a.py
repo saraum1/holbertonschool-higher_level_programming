@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all State objects containing the letter 'a' using SQLAlchemy."""
+"""Lists State objects that contain the letter 'a' using SQLAlchemy."""
 
 import sys
 from sqlalchemy import create_engine
@@ -8,7 +8,7 @@ from model_state import Base, State
 
 
 def main():
-    """Prints states with 'a' in name ordered by id."""
+    """Prints matching states ordered by id."""
     engine = create_engine(
         "mysql+mysqldb://{}:{}@localhost/{}".format(
             sys.argv[1], sys.argv[2], sys.argv[3]
@@ -18,8 +18,15 @@ def main():
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    for state in session.query(State).filter(State.name.like("%a%")).order_by(State.id).all():
+
+    for state in (
+        session.query(State)
+        .filter(State.name.like("%a%"))
+        .order_by(State.id)
+        .all()
+    ):
         print("{}: {}".format(state.id, state.name))
+
     session.close()
 
 
