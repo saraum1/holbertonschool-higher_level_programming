@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """Lists all cities of a given state (safe) using MySQLdb with one execute()."""
 
+#!/usr/bin/python3
+"""Task 5 fix: Lists all cities of a given state (SQL injection free)."""
+
 import sys
 import MySQLdb
 
@@ -18,13 +21,14 @@ def main():
     cur = db.cursor()
     cur.execute(
         "SELECT cities.name "
-        "FROM cities JOIN states ON cities.state_id = states.id "
+        "FROM cities "
+        "JOIN states ON cities.state_id = states.id "
         "WHERE states.name = %s "
         "ORDER BY cities.id ASC",
         (sys.argv[4],)
     )
     rows = cur.fetchall()
-    print(", ".join([r[0] for r in rows]))
+    print(", ".join(row[0] for row in rows))
     cur.close()
     db.close()
 
