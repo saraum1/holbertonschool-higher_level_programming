@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Prints all City objects from the database with their State name using SQLAlchemy."""
+"""Prints all City objects with their State name using SQLAlchemy."""
 
 import sys
 from sqlalchemy import create_engine
@@ -9,7 +9,7 @@ from model_city import City
 
 
 def main():
-    """Lists cities ordered by id, formatted as <state>: (<id>) <city>."""
+    """Lists cities ordered by id formatted as <state>: (<id>) <city>."""
     engine = create_engine(
         "mysql+mysqldb://{}:{}@localhost/{}".format(
             sys.argv[1], sys.argv[2], sys.argv[3]
@@ -20,7 +20,13 @@ def main():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    for city, state in session.query(City, State).join(State, City.state_id == State.id).order_by(City.id).all():
+    query = (
+        session.query(City, State)
+        .join(State, City.state_id == State.id)
+        .order_by(City.id)
+        .all()
+    )
+    for city, state in query:
         print("{}: ({}) {}".format(state.name, city.id, city.name))
 
     session.close()
