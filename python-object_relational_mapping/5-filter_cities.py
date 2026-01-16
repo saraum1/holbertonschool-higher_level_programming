@@ -1,12 +1,12 @@
-#!/usr/bin/python3
-"""Lists all cities of a given state (safe) using MySQLdb with one execute()."""
+##!/usr/bin/python3
+"""Lists cities of a given state using MySQLdb."""
 
 import sys
 import MySQLdb
 
 
 def main():
-    """Prints cities of the given state name, comma-separated."""
+    """Prints cities of the given state name."""
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
