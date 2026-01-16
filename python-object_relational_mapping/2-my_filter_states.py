@@ -6,7 +6,7 @@ import MySQLdb
 
 
 def main():
-    """Uses format() to build a query and prints matching states."""
+    """Connects to MySQL and prints matching states ordered by id."""
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -16,10 +16,18 @@ def main():
         charset="utf8"
     )
     cur = db.cursor()
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(sys.argv[4])
+
+    # Case-sensitive exact match using BINARY
+    query = (
+        "SELECT * FROM states "
+        "WHERE BINARY name = '{}' "
+        "ORDER BY id ASC"
+    ).format(sys.argv[4])
+
     cur.execute(query)
     for row in cur.fetchall():
         print(row)
+
     cur.close()
     db.close()
 
