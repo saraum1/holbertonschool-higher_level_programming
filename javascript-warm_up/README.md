@@ -10,9 +10,6 @@ This project is part of the Holberton School curriculum. It covers the basics of
 * Handling command-line arguments using `process.argv`.
 * Implementing recursion and function modules.
 
-## Requirements
-* All files are interpreted on Ubuntu 20.04 LTS using `node` (version 14.x).
-* Code is compliant with `semistandard` (version 16.x.x).
 
 ## Author
 * **Sara** 
