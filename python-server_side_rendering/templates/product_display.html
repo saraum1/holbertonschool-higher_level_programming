@@ -2,10 +2,6 @@
 <html lang="en">
 <head>
     <title>Product Display</title>
-    <style>
-        table { width: 50%; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-    </style>
 </head>
 <body>
     <h1>Product Details</h1>
@@ -13,7 +9,7 @@
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% else %}
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>Name</th>
